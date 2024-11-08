@@ -1,11 +1,13 @@
-"use client"
+"use client";
 import Link from "next/link";
 import logo from "../../../public/logo.png";
 import Image from "next/image";
 import { useState } from 'react';
-import { registerUser } from "./../../../services/api"
+import { useRouter } from 'next/navigation'; 
+import { registerUser } from "./../../../services/api";
 
 export const Register = () => {
+  const router = useRouter(); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -22,6 +24,9 @@ export const Register = () => {
     try {
       const response = await registerUser(email, email.split('@')[0], password); 
       console.log('Registro bem-sucedido:', response.data);
+      
+      router.push("/interesses"); 
+
     } catch (error) {
       console.error('Erro ao registrar:', error);
       setError("Erro ao registrar. Tente novamente.");

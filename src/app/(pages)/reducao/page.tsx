@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import axios from 'axios';
 import React, { useState } from "react";
 import Image from "next/image"; 
 import logo from "../../../public/logo.png"; 
@@ -8,6 +9,18 @@ const Reducao = () => {
   const [selectedReduction, setSelectedReduction] = useState("20%");
 
   const percentages = ["20%", "40%", "60%", "80%", "90%", "100%"];
+
+  const submitReductionGoal = async () => {
+    const hashcode = localStorage.getItem("userHashcode");
+    const metaReduction = selectedReduction;
+
+    try {
+      await axios.post(`http://localhost:8080/${hashcode}/objectives`, { metaReduction });
+      window.location.href = "/Home"; 
+    } catch (error) {
+      console.error("Erro ao registrar meta de redução:", error);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
@@ -32,7 +45,7 @@ const Reducao = () => {
               </button>
             ))}
           </div>
-          <button className="w-32 h-10 bg-green-800 text-white rounded-lg font-bold hover:bg-green-600">
+          <button className="w-32 h-10 bg-green-800 text-white rounded-lg font-bold hover:bg-green-600" onClick={submitReductionGoal}>
             <Link href="./Home">
             Terminar
             </Link>

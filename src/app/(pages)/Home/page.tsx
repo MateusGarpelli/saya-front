@@ -6,6 +6,8 @@ import bikeVerde from "../../../public/bikeVerde.png";
 import correrVerde from "../../../public/correrVerde.png";
 import lerVerde from "../../../public/livrosVerde.png";
 import treinarVerde from "../../../public/treinarVerde.png";
+import logo from "../../../public/logo.png";
+import mais from "../../../public/mais.png";
 
 const Home = () => {
   const router = useRouter();
@@ -34,8 +36,10 @@ const Home = () => {
     <div className="flex flex-col justify-center m-auto max-w-sm items-center bg-white h-screen p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
         <div className="w-full flex justify-between items-center mb-6">
-          <button className="text-green-800 text-3xl">&#9776;</button>
-          <h1 className="text-3xl font-bold text-green-800">TAREFAS</h1>
+        <div className="flex justify-center ">
+          <Image src={logo} alt="Logo" className="w-12 h-12" />
+        </div>
+          <h1 className="text-3xl font-bold mr-7 text-green-800">TAREFAS</h1>
           <span></span>
         </div>
 
@@ -60,6 +64,24 @@ const Home = () => {
               <p className="text-sm text-green-600">
                 Um copo cheio com mais da metade de água
               </p>
+            </div>
+          </div>
+          <div
+            className={`flex items-center p-4 border-2 rounded-full shadow-md ${
+              tasks.flexoes ? "bg-green-200 border-green-800" : "bg-white"
+            }`}
+            onClick={() => handleTaskClick("flexoes")}
+          >
+            <Image
+              src={treinarVerde}
+              alt="Flexões"
+              width={24}
+              height={24}
+              className="w-8 h-8"
+            />
+            <div className="ml-4 text-left">
+              <h2 className="text-lg font-semibold text-green-800">+10 flexões</h2>
+              <p className="text-sm text-green-600">Aos poucos você chega lá!</p>
             </div>
           </div>
 
@@ -106,29 +128,11 @@ const Home = () => {
             </div>
           </div>
 
-          <div
-            className={`flex items-center p-4 border-2 rounded-full shadow-md ${
-              tasks.flexoes ? "bg-green-200 border-green-800" : "bg-white"
-            }`}
-            onClick={() => handleTaskClick("flexoes")}
-          >
-            <Image
-              src={bikeVerde}
-              alt="Flexões"
-              width={24}
-              height={24}
-              className="w-8 h-8"
-            />
-            <div className="ml-4 text-left">
-              <h2 className="text-lg font-semibold text-green-800">+10 flexões</h2>
-              <p className="text-sm text-green-600">Aos poucos você chega lá!</p>
-            </div>
-          </div>
         </div>
 
-        <button className="bg-green-800 mt-6 text-white text-4xl w-16 h-16 rounded-full shadow-lg flex items-center justify-center">
-          +
-        </button>
+        <div className="flex justify-end pt-6 cursor-pointer">
+        <Image src={mais} alt="Logo" className="w-14 h-14 " />
+        </div>
       </div>
     </div>
   );

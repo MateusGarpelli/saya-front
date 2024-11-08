@@ -13,11 +13,14 @@ export const registerUser = (email, username, password) => {
 };
 
 export const loginUser = (username, password) => {
-  return axiosInstance.post('/access/login', { params: { username, password } });
+  return axiosInstance.post('/access/login', { username, password } );
 };
+// export const loginUser = (username, password) => {
+//   return axiosInstance.post('/access/login', { username, password });
+// };
 
 export const registerObjectives = (hashcode, dailySpendedHours, metaReduction) => {
-  return axiosInstance.post(`/access/${hashcode}/objectives`, { objectives: { dailySpendedHours, metaReduction } });
+  return axiosInstance.post(`/access/${hashcode}/objectives`, { dailySpendedHours, metaReduction });
 };
 
 export const registerHabits = (hashcode, habits) => {
