@@ -1,19 +1,23 @@
-"use client"
+"use client";
 import Link from "next/link";
 import logo from "../public/logo.png"; 
 import Image from "next/image"; 
 import { useState } from 'react';
-import { loginUser } from "./../services/api"
+import { useRouter } from 'next/navigation'; 
+import { loginUser } from "./../services/api";
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await loginUser(username, password);
       console.log('Login bem-sucedido:', response.data);
+
+      router.push("/interesses");
     } catch (error) {
       console.error('Erro ao fazer login:', error);
     }

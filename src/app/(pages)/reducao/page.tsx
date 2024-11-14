@@ -12,11 +12,14 @@ const Reducao = () => {
 
   const submitReductionGoal = async () => {
     const hashcode = localStorage.getItem("userHashcode");
-    const metaReduction = selectedReduction;
+    const data = {
+      dailySpendedHours: null, 
+      metaReduction: selectedReduction
+    };
 
     try {
-      await axios.post(`http://localhost:8080/${hashcode}/objectives`, { metaReduction });
-      window.location.href = "/Home"; 
+      await axios.post(`http://localhost:8080/${hashcode}/objectives`, data);
+      window.location.href = "/Home";
     } catch (error) {
       console.error("Erro ao registrar meta de redução:", error);
     }

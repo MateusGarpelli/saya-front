@@ -13,8 +13,9 @@ export const registerUser = (email, username, password) => {
 };
 
 export const loginUser = (username, password) => {
-  return axiosInstance.post('/access/login', { username, password } );
+  return axiosInstance.post('/access/login', { username, password });
 };
+
 // export const loginUser = (username, password) => {
 //   return axiosInstance.post('/access/login', { username, password });
 // };

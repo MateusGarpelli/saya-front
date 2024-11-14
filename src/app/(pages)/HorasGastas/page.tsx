@@ -12,11 +12,14 @@ const HorasGastas = () => {
 
   const submitTimeSpent = async () => {
     const hashcode = localStorage.getItem("userHashcode");
-    const dailySpendedHours = selectedTime;
+    const data = {
+      dailySpendedHours: selectedTime,
+      metaReduction: null 
+    };
 
     try {
-      await axios.post(`http://localhost:8080/${hashcode}/objectives`, { dailySpendedHours });
-      window.location.href = "/Reducao"; 
+      await axios.post(`http://localhost:8080/${hashcode}/objectives`, data);
+      window.location.href = "/Reducao";
     } catch (error) {
       console.error("Erro ao registrar horas gastas:", error);
     }
