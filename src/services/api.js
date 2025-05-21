@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080', 
+  baseURL: 'http://localhost:5000/api',
+  headers: { 'Content-Type': 'application/json' }
 });
 
 export default api;
@@ -9,11 +10,11 @@ export default api;
 import axiosInstance from './api';
 
 export const registerUser = (email, username, password) => {
-  return axiosInstance.post('/access/register', { email, username, password });
+  return axiosInstance.post('/auth/register', { email, username, password });
 };
 
-export const loginUser = (username, password) => {
-  return axiosInstance.post('/access/login', { username, password });
+export const loginUser = (email, password) => {
+  return axiosInstance.post('/auth/login', { email, password });
 };
 
 // export const loginUser = (username, password) => {

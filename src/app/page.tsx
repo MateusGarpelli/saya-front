@@ -7,14 +7,14 @@ import { useRouter } from 'next/navigation';
 import { loginUser } from "./../services/api";
 
 export default function LoginForm() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginUser(username, password);
+      const response = await loginUser(email, password);
       console.log('Login bem-sucedido:', response.data);
 
       router.push("/interesses");
@@ -36,9 +36,9 @@ export default function LoginForm() {
           <div>
             <input
               type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             />
           </div>
