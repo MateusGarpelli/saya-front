@@ -9,18 +9,21 @@ import { loginUser } from "./../services/api";
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [erro, setErro] = useState('');
   const router = useRouter(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginUser(email, password);
-      console.log('Login bem-sucedido:', response.data);
+  const response = await loginUser(email, password);
+  console.log('Login bem-sucedido:', response.data);
+  setErro(''); 
+  router.push("/interesses");
+} catch (error) {
+  console.error('Erro ao fazer login:', error);
+  setErro('Email ou senha incorretos. Tente novamente.');
+}
 
-      router.push("/interesses");
-    } catch (error) {
-      console.error('Erro ao fazer login:', error);
-    }
   };
 
   return (
@@ -32,6 +35,12 @@ export default function LoginForm() {
         <div className="text-center text-2xl font-bold text-green-600 mb-6">
           Entrar
         </div>
+        {erro && (
+  <div className="text-red-600 text-center font-medium">
+    {erro}
+  </div>
+)}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <input
